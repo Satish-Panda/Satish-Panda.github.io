@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOUR NAME — Research</title>
+  <meta name="description" content="Portfolio website for YOUR NAME: research goals, experience, publications, and CV." />
+  <meta property="og:title" content="YOUR NAME — Research" />
+  <meta property="og:description" content="Research goals, experience, publications, and CV." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <style>
+    :root { --bg: #0b0c10; --fg: #e5e7eb; --muted:#9ca3af; --accent:#60a5fa; --card:#111318; --border:#1f2937; }
+    :root[data-theme="light"] { --bg:#ffffff; --fg:#111827; --muted:#6b7280; --accent:#2563eb; --card:#f9fafb; --border:#e5e7eb; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); line-height:1.6}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:960px; margin:0 auto; padding:24px}
+    header{display:flex; gap:16px; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:16px; position:sticky; top:0; backdrop-filter:saturate(180%) blur(8px); background:color-mix(in srgb, var(--bg) 85%, transparent)}
+    .brand{display:flex; gap:16px; align-items:center}
+    .avatar{width:64px; height:64px; border-radius:16px; object-fit:cover; border:1px solid var(--border)}
+    nav{display:flex; gap:16px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:8px 12px; border-radius:999px; background:var(--card)}
+    .btn:hover{transform:translateY(-1px)}
+    .grid{display:grid; gap:20px}
+    @media(min-width: 768px){ .grid-2{grid-template-columns:1.5fr 1fr} }
+    section{border:1px solid var(--border); background:var(--card); padding:20px; border-radius:16px}
+    h1{font-size:clamp(24px, 2.4vw, 40px); margin:0}
+    h2{font-size:clamp(18px, 2vw, 28px); margin:0 0 8px}
+    h3{margin:16px 0 8px}
+    .muted{color:var(--muted)}
+    ul{padding-left:20px; margin:8px 0}
+    .pill{display:inline-block; font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; margin-right:6px; background:var(--bg)}
+    footer{padding:32px 0; text-align:center; color:var(--muted)}
+    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:var(--bg); border:1px solid var(--border); padding:2px 6px; border-radius:6px}
+  </style>
+  <script>
+    // Theme toggle persistence
+    const applyTheme = (t)=>document.documentElement.setAttribute('data-theme', t);
+    const saved = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', saved);
+    function toggleTheme(){ const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; applyTheme(next); localStorage.setItem('theme', next); }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img class="avatar" src="/assets/profile.jpg" alt="Portrait of YOUR NAME" />
+        <div>
+          <h1>YOUR NAME</h1>
+          <div class="muted">Researcher • Algorithms | Game Theory | ML & Society</div>
+        </div>
+      </div>
+      <nav>
+        <a class="btn" href="#goals">Research Goals</a>
+        <a class="btn" href="#experience">Experience</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="#cv">CV</a>
+        <button class="btn" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">🌓 Theme</button>
+      </nav>
+    </header>
+
+    <main class="grid grid-2" style="margin-top:20px">
+      <section id="intro">
+        <h2>About</h2>
+        <p>
+          I am a <strong>final-year undergraduate</strong> in Electrical Engineering and Computer Science at <em>IIT Kanpur</em>.
+          My interests lie in <strong>Algorithms</strong>, <strong>Game Theory</strong>, and <strong>Machine Learning</strong> with applications to
+          <strong>Computational Social Choice</strong>, <strong>Planning</strong>, and <strong>Fair AI</strong>.
+        </p>
+        <p>
+          I like building clean theoretical models with practical implications, especially around <em>matching</em>,
+          <em>fair allocation</em>, and <em>platform design</em>.
+        </p>
+        <p class="muted">Email: <a href="mailto:you@university.edu">you@university.edu</a> · Google Scholar · GitHub · Twitter · CV below</p>
+      </section>
+
+      <section id="highlights">
+        <h2>Highlights</h2>
+        <ul>
+          <li>Upcoming PhD applications in <span class="pill">Algorithms</span> <span class="pill">Market Design</span> <span class="pill">ML & Society</span></li>
+          <li>Recent preprint: <em>Proportional Social Fairness in Clustering</em></li>
+          <li>TA/RA experience across algorithms and data science courses</li>
+        </ul>
+      </section>
+    </main>
+
+    <section id="goals" style="margin-top:20px">
+      <h2>Research Goals</h2>
+      <p>In the next 3–5 years, I aim to:</p>
+      <ul>
+        <li>Design algorithms with provable fairness guarantees under uncertainty and strategic behavior.</li>
+        <li>Develop sampling and optimization methods for <em>deliberation</em> and <em>citizen assembly</em> platforms at scale.</li>
+        <li>Bridge theory and deployment through field-collaborations and open-source implementations.</li>
+      </ul>
+    </section>
+
+    <section id="experience" style="margin-top:20px">
+      <h2>Research Experience</h2>
+      <article>
+        <h3>Research Intern — Lab/Advisor, University (May 2025 – Aug 2025)</h3>
+        <ul>
+          <li>Worked on submodular optimization for group formation; improved utility by 12–18% in simulations.</li>
+          <li>Implemented scalable greedy approximations with theoretical guarantees.</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Undergraduate Researcher — IIT Kanpur (2024 – Present)</h3>
+        <ul>
+          <li>Proposed <span class="kbd">PSF-Clustering</span> with proportional fairness constraints; analyzed approximation bounds.</li>
+          <li>Co-authored a preprint; released reproducible code and datasets.</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Teaching Assistant — Algorithms (2024)</h3>
+        <ul>
+          <li>Led recitations on flow, matching, and amortized analysis; authored problem sets and solutions.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="publications" style="margin-top:20px">
+      <h2>Selected Publications & Preprints</h2>
+      <ol>
+        <li><strong>Proportional Social Fairness in Clustering</strong> — YOUR NAME, Coauthors. <em>Preprint</em>, 2025. [<a href="#">PDF</a>] [<a href="#">Code</a>]</li>
+        <li><strong>City Sampling for Citizens’ Assemblies</strong> — Coauthors. <em>Working Paper</em>, 2025. [<a href="#">PDF</a>]</li>
+        <li><strong>Dynamic Matching in School Choice</strong> — Coauthors. <em>Under Review</em>, 2024. [<a href="#">PDF</a>]</li>
+      </ol>
+    </section>
+
+    <section id="cv" style="margin-top:20px">
+      <h2>Curriculum Vitae</h2>
+      <p>Download my latest CV here: <a href="/assets/Satis_CV.pdf" download>Your_Name_CV.pdf</a></p>
+      <p class="muted">Tip: keep file name stable so links don’t break. Update the PDF in <span class="kbd">/assets</span>.</p>
+    </section>
+
+    <section id="contact" style="margin-top:20px">
+      <h2>Contact</h2>
+      <p>Email <a href="mailto:you@university.edu">you@university.edu</a>. For collaborations, please include a 2–3 sentence problem statement and any public links.</p>
+    </section>
+
+    <footer>
+      © <span id="year"></span> YOUR NAME. Built with plain HTML/CSS/JS. Last updated: <span id="updated"></span>.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+  </script>
+</body>
+</html>
