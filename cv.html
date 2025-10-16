@@ -66,11 +66,20 @@
     .download{ display:inline-flex; align-items:center; gap:8px; white-space:nowrap }
     .download .btn{ display:inline-flex; align-items:center; gap:8px }
 
-    section.cv{ padding:8px 0 18px 0; border-bottom:1px solid var(--border) }
-    section.cv:last-of-type{ border-bottom:none }
-    section.cv h3{ margin:8px 0 6px; font-size:clamp(18px,2.2vw,24px) }
-    .muted{ color:var(--muted) }
-    ul{ margin:6px 0 6px 18px }
+    /* Section vs Subsection */
+    section.cv-section{ padding:10px 0 20px 0; border-bottom:1px solid var(--border) }
+    section.cv-section:last-of-type{ border-bottom:none }
+    /* Section headings: larger */
+    section.cv-section > h3{ margin:10px 0 8px; font-size:clamp(20px,2.6vw,28px); font-weight:800 }
+
+    /* Subsection headings: smaller, unindented, with right-aligned dates */
+    .subsection{ margin:8px 0 10px 0; }
+    .subhead{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+    .subhead h4{ margin:0; font-size:clamp(16px,2.1vw,20px); font-weight:700 }
+    .dates{ color:var(--muted); font-size:clamp(12px,1.6vw,14px); white-space:nowrap }
+
+    /* Bullets inside subsection: slightly indented */
+    .subsection ul{ margin:6px 0 6px 18px }
   </style>
 
   <script>
@@ -103,7 +112,7 @@
     </header>
 
     <main>
-      <!-- LEFT: Sticky index linking to sections on this page -->
+      <!-- LEFT: Sticky index linking to SECTIONS ONLY -->
       <aside class="index">
         <div class="index-inner" id="cv-index">
           <h2>CV Index</h2>
@@ -115,7 +124,7 @@
         </div>
       </aside>
 
-      <!-- RIGHT: CV content (dummy content for now) -->
+      <!-- RIGHT: CV content with sections & subsections (subsections won't appear in index) -->
       <section>
         <div class="cv-header">
           <div class="cv-title">Curriculum Vitae</div>
@@ -124,40 +133,85 @@
           </div>
         </div>
 
-        <section id="edu" class="cv">
+        <!-- SECTION: Education -->
+        <section id="edu" class="cv-section">
           <h3>Education</h3>
-          <ul>
-            <li><strong>IIT Kanpur</strong> — B.Tech (EE) & B.S. (CS) — 2021–2025. Lorem ipsum short filler for structure.</li>
-          </ul>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>IIT Kanpur — B.Tech (EE) & B.S. (CS)</h4>
+              <span class="dates">Aug 2021 – May 2025</span>
+            </div>
+            <ul>
+              <li>Short filler bullet about coursework/achievements.</li>
+              <li>Another brief item as placeholder.</li>
+            </ul>
+          </div>
         </section>
 
-        <section id="rex" class="cv">
+        <!-- SECTION: Research Experience -->
+        <section id="rex" class="cv-section">
           <h3>Research Experience</h3>
-          <ul>
-            <li><strong>Research Intern</strong>, Market/Mechanism Design Lab — Summer 2025. Dummy bullets summarizing contributions.</li>
-            <li><strong>Undergraduate Researcher</strong>, IIT Kanpur — 2024– . Another placeholder line.</li>
-          </ul>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Research Intern — Theory & Market Design Lab</h4>
+              <span class="dates">Apr 2025 – Aug 2025</span>
+            </div>
+            <ul>
+              <li>Dummy bullet describing contribution one.</li>
+              <li>Dummy bullet describing contribution two.</li>
+            </ul>
+          </div>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Undergraduate Researcher — IIT Kanpur</h4>
+              <span class="dates">Jan 2024 – Present</span>
+            </div>
+            <ul>
+              <li>Placeholder line on proportional fairness in clustering.</li>
+            </ul>
+          </div>
         </section>
 
-        <section id="teach" class="cv">
+        <!-- SECTION: Teaching -->
+        <section id="teach" class="cv-section">
           <h3>Teaching</h3>
-          <ul>
-            <li>TA — Algorithms. Sections on flow, matching, amortized analysis. Placeholder text.</li>
-          </ul>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Teaching Assistant — Algorithms</h4>
+              <span class="dates">Aug 2024 – Dec 2024</span>
+            </div>
+            <ul>
+              <li>Led sessions on max-flow, matching, amortized analysis.</li>
+            </ul>
+          </div>
         </section>
 
-        <section id="awards" class="cv">
+        <!-- SECTION: Awards & Honors -->
+        <section id="awards" class="cv-section">
           <h3>Awards & Honors</h3>
-          <ul>
-            <li>Institute Merit Scholarship — Example placeholder.</li>
-          </ul>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Institute Merit Scholarship</h4>
+              <span class="dates">2023</span>
+            </div>
+            <ul>
+              <li>Short description placeholder.</li>
+            </ul>
+          </div>
         </section>
 
-        <section id="skills" class="cv">
+        <!-- SECTION: Skills -->
+        <section id="skills" class="cv-section">
           <h3>Skills</h3>
-          <ul>
-            <li>Algorithm Design, Mechanism Design, Python, C++. (Dummy list to be edited.)</li>
-          </ul>
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Technical</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Algorithm Design, Mechanism Design, Python, C++.</li>
+            </ul>
+          </div>
         </section>
       </section>
     </main>
@@ -168,8 +222,8 @@
   </div>
 
   <script>
-    // Active state sync on the sticky index while scrolling
-    const sections = [...document.querySelectorAll('section.cv')];
+    // Active index highlight for SECTIONS (not subsections)
+    const sections = [...document.querySelectorAll('section.cv-section')];
     const links = [...document.querySelectorAll('#cv-index a')];
     const byId = id => links.find(a => a.getAttribute('href') === `#${id}`);
 
