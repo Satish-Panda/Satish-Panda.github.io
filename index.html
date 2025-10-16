@@ -3,18 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Satish Panda — About</title>
-  <meta name="description" content="About · Satish Panda — Algorithms, Game Theory, ML & Society." />
+  <title>Satish Panda — Experience</title>
+  <meta name="description" content="Experience · Satish Panda — Algorithms, Game Theory, ML & Society." />
   <link rel="icon" href="assets/favicon.png" />
   <style>
     :root{
       --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0;
     }
-    /* System dark-mode default */
     @media (prefers-color-scheme: dark){
       :root{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
     }
-    /* Explicit theme override via attribute */
     [data-theme="light"]{ --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0; }
     [data-theme="dark"]{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
 
@@ -33,30 +31,24 @@
     .btn{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:transparent;color:var(--fg)}
 
     main{padding:24px 0}
-    .grid{display:grid;gap:24px}
-    @media(min-width: 960px){ .grid-2{grid-template-columns:1.7fr .9fr} }
-
-    h1{margin:0 0 8px;font-size:clamp(26px,3.6vw,44px)}
-    h2{margin:6px 0 12px;font-size:clamp(18px,2.4vw,28px)}
+    section{margin-bottom:28px}
+    h2{margin:6px 0 10px;font-size:clamp(18px,2.4vw,28px)}
+    p{margin:4px 0 12px}
     .muted{color:var(--muted)}
-
-    /* clean, card-less layout */
-    section article{margin-bottom:22px}
     .avatar{width:220px;height:260px;border-radius:12px;object-fit:cover;display:block;margin:8px auto 6px auto}
     .side{text-align:center}
   </style>
   <script>
-    // Theme: pick saved, else system, then apply; toggle persists
     (function(){
-      const saved = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial = saved ? saved : (systemPrefersDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', initial);
-      window.toggleTheme = function(){
-        const cur = document.documentElement.getAttribute('data-theme');
-        const next = (cur === 'dark') ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
+      const saved=localStorage.getItem('theme');
+      const systemDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial=saved?saved:(systemDark?'dark':'light');
+      document.documentElement.setAttribute('data-theme',initial);
+      window.toggleTheme=function(){
+        const cur=document.documentElement.getAttribute('data-theme');
+        const next=(cur==='dark')?'light':'dark';
+        document.documentElement.setAttribute('data-theme',next);
+        localStorage.setItem('theme',next);
       }
     })();
   </script>
@@ -66,36 +58,31 @@
     <header>
       <div class="brand">Satish Panda</div>
       <nav>
-        <a class="active" href="#">ABOUT</a>
-        <a href="#" title="Coming soon">EXPERIENCE</a>
+        <a href="about.html">ABOUT</a>
+        <a class="active" href="#">EXPERIENCE</a>
         <a href="#" title="Coming soon">CV</a>
         <button class="btn" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
       </nav>
     </header>
 
-    <main class="grid grid-2">
+    <main>
       <section>
-        <article>
-          <h2>About Me</h2>
-          <p>
-            I am a final‑year undergraduate at IIT Kanpur, working broadly in theoretical computer science: algorithms, game theory, and machine learning & society. I enjoy building clean models with provable guarantees and practical implications for matching, allocation, and deliberation platforms. (Replace this paragraph with your own text.)
-          </p>
-        </article>
-        <article>
-          <h2>Research Interests</h2>
-          <p>
-            Fairness and incentives in allocation and matching; submodular and robust methods for sampling/grouping; computational social choice; theory for ML systems. (Replace this filler with your own wording — a few crisp lines or bullets are ideal.)
-          </p>
-        </article>
+        <h2>Experience 1</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nulla vel magna tincidunt, in consequat risus porta. Morbi eu dolor ac lectus sagittis ultricies vel at nisi. Donec vehicula nisi at justo tempor, vel egestas lorem varius.
+        </p>
       </section>
-      <aside class="side">
-        <img src="assets/profile.jpg" class="avatar" alt="Portrait of Satish Panda" />
-        <div class="muted">IIT Kanpur · EE & CS</div>
-      </aside>
+
+      <section>
+        <h2>Experience 2</h2>
+        <p>
+          Ut tincidunt neque ac ex ullamcorper, ac tempus lorem egestas. Aliquam erat volutpat. Proin non finibus turpis. Integer vitae lectus sed risus pharetra ullamcorper. Pellentesque suscipit lectus at nisl vehicula posuere.
+        </p>
+      </section>
     </main>
 
     <footer class="muted" style="padding:24px 0; border-top:1px solid var(--border); text-align:center; margin-top:8px">
-      © <span id="year"></span> Satish Panda · About page. Last updated <span id="updated"></span>.
+      © <span id="year"></span> Satish Panda · Experience page. Last updated <span id="updated"></span>.
     </footer>
   </div>
   <script>
