@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Satish Panda — CV</title>
+  <meta name="description" content="Curriculum Vitae — Satish Panda" />
+  <link rel="icon" href="assets/favicon.png" />
+
+  <style>
+    :root{ --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0; }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
+    }
+    [data-theme="light"]{ --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0; }
+    [data-theme="dark"]{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.7;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:1100px; margin:0 auto; padding:28px}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; border-bottom:1px solid var(--border);
+      position:sticky; top:0; background:color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter:saturate(180%) blur(6px); z-index:50;
+    }
+    .brand{font-weight:900; font-size:clamp(22px,3.4vw,36px); letter-spacing:.2px}
+    nav{display:flex; gap:22px; align-items:center}
+    nav a{font-weight:600; color:var(--fg); opacity:.9}
+    nav a.active{color:var(--accent)}
+    .btn{border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:transparent; color:var(--fg)}
+
+    main{ display:grid; grid-template-columns:260px 1fr; gap:24px; padding-top:24px; }
+    @media (max-width: 900px){ main{ grid-template-columns:1fr; } }
+
+    /* Sticky index (vertically centered) */
+    .index{ position:relative; min-height:60vh; }
+    .index-inner{
+      position:sticky; top:50vh; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:10px;
+      border-left:2px solid var(--border); padding-left:14px;
+    }
+    .index h2{ margin:0 0 6px; font-size:clamp(16px,2vw,20px) }
+    .index a{
+      display:block; padding:6px 8px; border-radius:8px; cursor:pointer; color:var(--fg);
+      text-decoration:none;
+    }
+    .index a:hover{ background:color-mix(in srgb, var(--fg) 6%, transparent) }
+    .index a.active{ background:color-mix(in srgb, var(--fg) 10%, transparent) }
+
+    /* Right content */
+    .cv-header{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px;
+      border-bottom:1px solid var(--border); padding-bottom:10px;
+    }
+    .cv-title{ font-size:clamp(20px,2.6vw,28px); font-weight:800 }
+    .download{ display:inline-flex; align-items:center; gap:8px; white-space:nowrap }
+    .download .btn{ display:inline-flex; align-items:center; gap:8px }
+
+    /* Section vs Subsection */
+    section.cv-section{ padding:10px 0 20px 0; border-bottom:1px solid var(--border) }
+    section.cv-section:last-of-type{ border-bottom:none }
+    /* Section headings: larger */
+    section.cv-section > h3{ margin:10px 0 8px; font-size:clamp(20px,2.6vw,28px); font-weight:800 }
+
+    /* Subsection headings: smaller, unindented, with right-aligned dates */
+    .subsection{ margin:8px 0 10px 0; }
+    .subhead{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+    .subhead h4{ margin:0; font-size:clamp(16px,2.1vw,20px); font-weight:700 }
+    .dates{ color:var(--muted); font-size:clamp(12px,1.6vw,14px); white-space:nowrap }
+
+    /* Bullets inside subsection: slightly indented */
+    /*.subsection ul{ margin:6px 0 6px 18px }*/
+    .subsection ul {
+      margin: 6px 0;
+      padding-left: 30px;
+    }
+
+     p { text-align: justify; }
+     /* Keep section headings visible below the sticky header */
+    section.cv-section { scroll-margin-top: 96px; }
+
+    @media (max-width: 900px) {
+      section.cv-section { scroll-margin-top: 72px; }
+    }
+  </style>
+
+  <script>
+    // Always start in light mode unless user has changed it
+    (function(){
+      const saved = localStorage.getItem('theme');
+      const initial = saved ? saved : 'light';
+      document.documentElement.setAttribute('data-theme', initial);
+      window.toggleTheme = function(){
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = (cur === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">Satish Panda</div>
+      <nav>
+        <a href="index.html">ABOUT</a>
+        <a href="experience.html">EXPERIENCE</a>
+        <a class="active" href="cv.html">CV</a>
+        <button class="btn" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- LEFT: Sticky index linking to sections -->
+      <aside class="index">
+        <div class="index-inner" id="cv-index">
+          <h2>CV Index</h2>
+          <a href="#edu" class="active">Education</a>
+          <a href="#rex">Research Experience</a>
+          <a href="#internship">Industry Internship</a>
+          <!--<a href="#course-project">Relevant Course Project</a>-->
+          <a href="#coursework-skills">Relevant Coursework & Technical Skills</a>
+          <a href="#achievements">Scholastic Achievements</a>
+          <a href="#extracurricular">Extracurricular</a>
+        </div>
+      </aside>
+
+      <!-- RIGHT: CV content -->
+      <section>
+        <div class="cv-header">
+          <div class="cv-title">Curriculum Vitae</div>
+          <div class="download">
+            <a class="btn" href="assets/Satish_Panda_CV.pdf" download>⬇️ Download PDF</a>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <section id="edu" class="cv-section">
+          <h3>Education</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Indian Institute of Technology Kanpur — B.Tech (EE) & B.S. (CS)</h4>
+              <span class="dates">Expected May 2026</span>
+            </div>
+            <ul>
+              <li>Cumulative Performance Index: 9.53 / 10</li>
+              <li>Majors: Electrical Engineering and Computer Science (5-year program)</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Jawahar Vidya Mandir, Ranchi — Secondary & Senior Secondary</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Class X: 97.6% · Class XII: 98.2%</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Research Experience -->
+        <section id="rex" class="cv-section">
+          <h3>Research Experience</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Research Interests</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Algorithms, Machine Learning, Game Theory, Distributed Environments</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>IUSSTF–Viterbi Researcher — USC Viterbi School of Engineering</h4>
+              <span class="dates">May 2025 – Present</span>
+            </div>
+            <ul>
+              <li>Faculty mentor: Prof. Evi Micha; on-site May–Jul, Los Angeles, CA (USA)</li>
+              <li>Topic: Proportional Fairness in Clustering; manuscript in preparation</li>
+              <li>Impossibility for transferable non-centroid fairness; pivot to online centroid clustering</li>
+              <li>Existential & constructive online constant-order approximations with single recourse (small/large agent-to-center ratios)</li>
+              <li>Constructive exact online clustering in line/tree metrics (recourse 1/2) with constant-order relaxation on min coalition size for group fairness</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Undergraduate Project — Computer Science & Engineering, IIT Kanpur</h4>
+              <span class="dates">Aug 2025 – Present</span>
+            </div>
+            <ul>
+              <li>Mentor: Prof. Sunil Simon; topic: Distributed Planning Models</li>
+              <li>Agents control personal propositions; limited observability of others unless broadcast</li>
+              <li>Objectives via restricted LTL with nested epistemic modalities; questions of decidability & learning</li>
+            </ul>
+          </div>
+
+          <!--<div class="subsection">
+            <div class="subhead">
+              <h4>Course Project — Probabilistic Machine Learning</h4>
+              <span class="dates">Jan 2024 – Mar 2024</span>
+            </div>
+            <ul>
+              <li>Mentor: Prof. Piyush Rai; topic: Online Federated Learning</li>
+              <li>Variational aggregation to infer a global Gaussian; ridgeline-manifold view</li>
+              <li>Laplace approx with low-rank covariance (vs diagonal): trade-off dim vs cross-covariance capture for top-k components</li>
+            </ul>
+          </div>*/
+        </section> -->
+
+        <!-- Industry Internship -->
+        <section id="internship" class="cv-section">
+          <h3>Industry Internship</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Architecture Intern — Texas Instruments, Bangalore</h4>
+              <span class="dates">May 2024 – Jul 2024</span>
+            </div>
+            <ul>
+              <li>Addressing scheme for mixed-radix, reconfigurable, conflict-free FFTs</li>
+              <li>Mixed-base element indexing & addressing across multiple prime-factor lengths</li>
+              <li>Proposed in-place memory scheme using a single max-length block (vs multiple/duplicate memories)</li>
+              <li>Stage-wise indexing/tuple patterns inherent to FFTs; offered full-time role for optimized micro-architectures</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Relevant Course Project -->
+        <section id="course-project" class="cv-section">
+          <h3>Relevant Course Project</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>CHIRON Framework — Compiler Design</h4>
+              <span class="dates">Jan 2025 – Apr 2025</span>
+            </div>
+            <ul>
+              <li>Teaching compiler (Turtle language) basis from Prof. Subhajit Roy’s framework</li>
+              <li>Added function calls, threading (multiple turtles), proper scoping; new AST nodes & visitors</li>
+              <li>Interpreter augmented for scoping, functions, threading & concurrency</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Coursework & Technical Skills -->
+        <section id="coursework-skills" class="cv-section">
+          <h3>Relevant Coursework & Technical Skills</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Coursework</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Algorithms, Algorithmic Game Theory, Theory of Computation, Compilers</li>
+              <li>Probabilistic ML & Geometric Models, Statistical Signal Processing, Probability & Statistics</li>
+              <li>Communication Systems, Information & Coding Theory</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Programming & Architecture</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Programming: C, C++, Python, Verilog HDL, JavaScript</li>
+              <li>Architecture: MIPS, x86</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Scholastic Achievements -->
+        <section id="achievements" class="cv-section">
+          <h3>Scholastic Achievements</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Highlights</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Academic Excellence Award every year at IIT Kanpur</li>
+              <li>JEE Advanced (AIR 935, 2021)</li>
+              <li>KVPY National Fellowship (AIR 771, 2021)</li>
+              <li>NTSE National Fellowship (2019)</li>
+              <li>Selected among top 35 in INAO for International Astronomy Olympiad (2020; IAO canceled due to COVID-19)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Extracurricular -->
+        <section id="extracurricular" class="cv-section">
+          <h3>Extracurricular</h3>
+
+          <div class="subsection">
+            <div class="subhead">
+              <h4>Activities</h4>
+              <span class="dates">—</span>
+            </div>
+            <ul>
+              <li>Formal instruction in Hindustani Classical (Vocals), certified intermediate</li>
+              <li>Events Organizer, IITK Spring cultural festival (Techkriti 2024)</li>
+              <li>Member, IITK Counseling Service — Sophomore Academic Mentor (30 freshmen)</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </main>
+
+
+
+    <footer class="muted" style="padding:24px 0; border-top:1px solid var(--border); text-align:center; margin-top:8px">
+      © <span id="year"></span> Satish Panda · CV page. Last updated <span id="updated"></span>.
+    </footer>
+  </div>
+
+  <script>
+    // Active index highlight for SECTIONS (not subsections)
+    const sections = [...document.querySelectorAll('section.cv-section')];
+    const links = [...document.querySelectorAll('#cv-index a')];
+    const byId = id => links.find(a => a.getAttribute('href') === `#${id}`);
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          links.forEach(a => a.classList.remove('active'));
+          const a = byId(entry.target.id);
+          if(a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-96px 0px -50% 0px', threshold: 0.1 });
+
+    sections.forEach(s => obs.observe(s));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+  </script>
+</body>
+</html>
