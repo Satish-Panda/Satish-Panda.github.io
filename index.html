@@ -3,150 +3,90 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Satish Panda — Research</title>
-  <meta name="description" content="Satish Panda: Algorithms, Game Theory, and ML & Society. About, research goals, experience, papers, and CV." />
-  <link rel="icon" href="/assets/favicon.png" />
+  <title>Satish Panda — About</title>
+  <meta name="description" content="About · Satish Panda — Algorithms, Game Theory, ML & Society." />
+  <link rel="icon" href="assets/favicon.png" />
   <style>
-    :root { --bg:#fff; --fg:#0f172a; --muted:#64748b; --card:#f8fafc; --border:#e2e8f0; --accent:#7c3aed; --accent-2:#0ea5e9; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --card:#111318; --border:#1f2937; --accent:#a78bfa; --accent-2:#38bdf8; }
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --card:#f8fafc; --border:#e2e8f0; --accent:#7c3aed;
     }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --card:#111318; --border:#1f2937; --accent:#a78bfa; }
+    }
+    [data-theme="dark"]{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --card:#111318; --border:#1f2937; --accent:#a78bfa; }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--fg);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;line-height:1.65}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.7}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;position:sticky;top:0;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--border);z-index:50}
-    .brand{font-weight:800;font-size:clamp(22px,3vw,34px)}
-    nav{display:flex;gap:18px}
-    nav a{font-weight:600;color:var(--fg)}
-    nav a:hover{color:var(--accent)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:saturate(180%) blur(6px);z-index:50}
+    .brand{font-weight:900;font-size:clamp(22px,3.4vw,36px);letter-spacing:.2px}
+    nav{display:flex;gap:22px;align-items:center}
+    nav a{font-weight:600;color:var(--fg);opacity:.9}
+    nav a.active{color:var(--accent)}
+    .btn{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:var(--card)}
+    main{padding:24px 0}
     .grid{display:grid;gap:28px}
-    @media(min-width: 960px){.grid-2{grid-template-columns:2fr 1.1fr}}
-    section{padding:20px 0}
-    h1{font-size:clamp(28px,4vw,44px);margin:0 0 6px;font-weight:900}
-    h2{font-size:clamp(18px,2.4vw,30px);margin:0 0 10px}
-    h3{margin:18px 0 8px}
-    .muted{color:var(--muted)}
+    @media(min-width: 960px){ .grid-2{grid-template-columns:1.7fr .9fr} }
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
-    .pill{display:inline-block;padding:4px 10px;border:1px solid var(--border);border-radius:999px;margin-right:6px;color:var(--muted)}
-    .avatar{width:220px;height:260px;border-radius:12px;object-fit:cover;border:1px solid var(--border);box-shadow:0 4px 24px color-mix(in srgb, var(--fg) 8%, transparent)}
-    .sidebar{position:sticky;top:96px}
-    .grid-cards{display:grid;gap:16px}
-    @media(min-width: 720px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
-    .card h4{margin:0 0 6px}
-    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;background:var(--bg);border:1px solid var(--border);padding:2px 6px;border-radius:6px}
-    footer{padding:32px 0;color:var(--muted);text-align:center;border-top:1px solid var(--border);margin-top:24px}
+    h1{margin:0 0 8px;font-size:clamp(26px,3.6vw,44px)}
+    h2{margin:6px 0 12px;font-size:clamp(18px,2.4vw,28px)}
+    .muted{color:var(--muted)}
+    .avatar{width:220px;height:260px;border-radius:12px;object-fit:cover;border:1px solid var(--border);box-shadow:0 6px 24px color-mix(in srgb, var(--fg) 10%, transparent)}
+    footer{padding:32px 0;border-top:1px solid var(--border);color:var(--muted);text-align:center;margin-top:24px}
   </style>
+  <script>
+    // theme toggle + persistence
+    const applyTheme=t=>document.documentElement.setAttribute('data-theme',t);
+    const saved = localStorage.getItem('theme');
+    if(saved) applyTheme(saved);
+    function toggleTheme(){ const cur=document.documentElement.getAttribute('data-theme'); const next = cur==='dark' ? 'light' : 'dark'; applyTheme(next); localStorage.setItem('theme',next); }
+  </script>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="brand">Satish Panda</div>
       <nav>
-        <a href="#about">ABOUT</a>
-        <a href="#experience">EXPERIENCE</a>
-        <a href="#papers">PAPERS</a>
-        <a href="#cv">CV</a>
+        <a class="active" href="#">ABOUT</a>
+        <a href="#" title="Coming soon">EXPERIENCE</a>
+        <a href="#" title="Coming soon">CV</a>
+        <button class="btn" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
       </nav>
     </header>
 
-    <main class="grid grid-2" id="about">
+    <main class="grid grid-2">
       <section>
-    
-        <p>Hi. I'm a final-year undergraduate in Electrical Engineering and Computer Science at <strong>IIT Kanpur</strong>. My research is in <strong>theory</strong>: algorithms, game theory, and machine learning & society. I like models that are simple enough to analyze, yet rich enough to guide real platforms in <em>matching, allocation, and deliberation</em>.</p>
-        <p class="muted">Email: <a href="mailto:satish@example.edu">satish@example.edu</a> · <a href="#cv">CV</a> · Google Scholar · GitHub</p>
-        <h2>Research Goals</h2>
-        <ul>
-          <li>Fairness with incentives: design mechanisms with <em>provable</em> equity guarantees under strategic behavior.</li>
-          <li>Sampling & grouping for deliberation/citizen assemblies using submodular/robust objectives.</li>
-          <li>Bridging theory & deployment with open-source toolkits and field partners.</li>
-        </ul>
-        <div class="muted" style="margin-top:8px">
-          Areas: <span class="pill">Algorithms</span> <span class="pill">Game Theory</span> <span class="pill">Computational Social Choice</span> <span class="pill">Fair ML</span>
-        </div>
+        <h1>About</h1>
+        <article class="card">
+          <h2>About Me</h2>
+          <p>
+            I am a final‑year undergraduate at IIT Kanpur, working broadly in theoretical computer science: algorithms, game theory, and machine learning & society. I enjoy building clean models with provable guarantees and practical implications for matching, allocation, and deliberation platforms. (Replace this paragraph with your own text.)
+          </p>
+        </article>
+        <article class="card">
+          <h2>Research Interests</h2>
+          <p>
+            Fairness and incentives in allocation and matching; submodular and robust methods for sampling/grouping; computational social choice; theory for ML systems. (Replace this filler with your own wording — a few crisp lines or bullets are ideal.)
+          </p>
+        </article>
       </section>
-      <aside class="sidebar">
-        <img src="/assets/profile.jpg" alt="Portrait of Satish Panda" class="avatar" />
-        <div class="card" style="margin-top:12px">
-          <strong>B.Tech (Dual Major)</strong><br/>
-          Electrical Engineering & Computer Science<br/>
-          IIT Kanpur, India
+      <aside>
+        <div class="card" style="text-align:center">
+          <img src="assets/profile.jpg" class="avatar" alt="Portrait of Satish Panda" />
+          <div class="muted" style="margin-top:10px">IIT Kanpur · EE & CS</div>
         </div>
       </aside>
     </main>
 
-    <section id="experience">
-      <h2>Research Experience</h2>
-      <div class="grid-cards">
-        <div class="card">
-          <h4>Research Intern — Theory & Market Design (Summer 2025)</h4>
-          <div class="muted">Advisor: …</div>
-          <ul>
-            <li>Group formation via submodular objectives; constant-factor greedy with fast updates.</li>
-            <li>Benchmarked on deliberation datasets; improved group utility by 12–18%.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Undergraduate Researcher — IIT Kanpur (2024– )</h4>
-          <ul>
-            <li>Proposed <span class="kbd">PSF-Clustering</span> (proportional social fairness); analyzed approximation and impossibility trade-offs.</li>
-            <li>Open-source implementation and reproducible benchmarks.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Teaching Assistant — Algorithms</h4>
-          <ul>
-            <li>Led recitations on max-flow/min-cut, matching, amortized analysis; authored problem sets.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>Other Projects</h4>
-          <ul>
-            <li>Dynamic seat reassignment in school choice with late cancellations (theory + sim).</li>
-            <li>Sampling pipelines for citizen assemblies with representation constraints.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="papers">
-      <h2>Selected Papers & Preprints</h2>
-      <ol>
-        <li><strong>Proportional Social Fairness in Clustering</strong> — S. Panda, … <em>Preprint</em>, 2025. [<a href="#">PDF</a>] [<a href="#">Code</a>]</li>
-        <li><strong>City Sampling for Citizens’ Assemblies</strong> — … <em>Working Paper</em>, 2025. [<a href="#">PDF</a>]</li>
-        <li><strong>Dynamic Matching in School Choice</strong> — … <em>Under Review</em>, 2024. [<a href="#">PDF</a>]</li>
-      </ol>
-    </section>
-
-    <section id="cv">
-      <h2>CV</h2>
-      <p>Download: <a href="/assets/Satish_Panda_CV.pdf" download>Satish_Panda_CV.pdf</a></p>
-      <div class="grid" style="gap:14px">
-        <div class="card">
-          <h3>Education</h3>
-          <ul>
-            <li>IIT Kanpur — B.Tech (EE) & B.S. (CS) — 2021–2025</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Skills</h3>
-          <div class="pill">Algorithm Design</div>
-          <div class="pill">Mechanism Design</div>
-          <div class="pill">Python</div>
-          <div class="pill">C++</div>
-        </div>
-      </div>
-    </section>
-
     <footer>
-      © <span id="year"></span> Satish Panda · Built for GitHub Pages (no framework). Last updated: <span id="updated"></span>
+      © <span id="year"></span> Satish Panda · About page. Last updated <span id="updated"></span>.
     </footer>
   </div>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('updated').textContent=new Date().toISOString().slice(0,10);
   </script>
 </body>
 </html>
