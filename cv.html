@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Satish Panda — CV</title>
+  <meta name="description" content="Curriculum Vitae — Satish Panda" />
+  <link rel="icon" href="assets/favicon.png" />
+
+  <style>
+    :root{ --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0; }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
+    }
+    [data-theme="light"]{ --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --accent:#7c3aed; --border:#e2e8f0; }
+    [data-theme="dark"]{ --bg:#0b0c10; --fg:#e5e7eb; --muted:#9ca3af; --accent:#a78bfa; --border:#1f2937; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.7;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:1200px; margin:0 auto; padding:28px}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; border-bottom:1px solid var(--border);
+      position:sticky; top:0; background:color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter:saturate(180%) blur(6px); z-index:50;
+    }
+    .brand{font-weight:900; font-size:clamp(22px,3.4vw,36px); letter-spacing:.2px}
+    nav{display:flex; gap:22px; align-items:center}
+    nav a{font-weight:600; color:var(--fg); opacity:.9}
+    nav a.active{color:var(--accent)}
+    .btn{border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:transparent; color:var(--fg)}
+
+    main{
+      display:grid; grid-template-columns:280px 1fr; gap:24px; padding-top:24px;
+    }
+
+    /* Left index */
+    .index{
+      position:relative;
+      min-height:60vh;
+    }
+    .index-inner{
+      position:sticky; top:50vh; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:10px;
+      border-left:2px solid var(--border); padding-left:14px;
+    }
+    .index h2{margin:0 0 6px; font-size:clamp(16px,2vw,20px)}
+    .link{
+      display:block; padding:6px 8px; border-radius:8px; cursor:pointer;
+      color:var(--fg); text-decoration:none;
+    }
+    .link:hover{background:color-mix(in srgb, var(--fg) 6%, transparent)}
+    .link.active{background:color-mix(in srgb, var(--fg) 10%, transparent)}
+
+    /* Right PDF panel */
+    .pdf-wrap{
+      border:1px solid var(--border); border-radius:10px; overflow:hidden;
+      background:color-mix(in srgb, var(--bg) 95%, transparent);
+      height:80vh; /* visible height; adjust if you want taller */
+    }
+    .pdf{
+      width:100%; height:100%; border:0;
+    }
+
+    footer{
+      padding:24px 0; border-top:1px solid var(--border);
+      color:var(--muted); text-align:center; margin-top:20px;
+    }
+
+    @media (max-width: 900px){
+      main{ grid-template-columns:1fr; }
+      .index-inner{ position:static; transform:none; border-left:none; padding-left:0; margin-bottom:8px }
+      .pdf-wrap{ height:70vh; }
+    }
+  </style>
+
+  <script>
+    // Theme setup with persistence
+    (function(){
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = saved ? saved : (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', initial);
+      window.toggleTheme = function(){
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = (cur === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">Satish Panda</div>
+      <nav>
+        <a href="index.html">ABOUT</a>
+        <a href="experience.html">EXPERIENCE</a>
+        <a class="active" href="cv.html">CV</a>
+        <button class="btn" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- LEFT: Index of CV sections (click to jump pages) -->
+      <aside class="index">
+        <div class="index-inner">
+          <h2>CV Index</h2>
+          <!--
+            Map each section to the starting page in your PDF.
+            Update data-page values after you verify page numbers.
+          -->
+          <a class="link active" data-page="1">Education</a>
+          <a class="link" data-page="2">Research Experience</a>
+          <a class="link" data-page="3">Publications / Preprints</a>
+          <a class="link" data-page="4">Teaching</a>
+          <a class="link" data-page="5">Awards & Honors</a>
+          <a class="link" data-page="6">Skills</a>
+        </div>
+      </aside>
+
+      <!-- RIGHT: Embedded CV -->
+      <section class="pdf-wrap">
+        <!-- Use #page to jump; FitH tries to fit width horizontally -->
+        <iframe
+          id="cvFrame"
+          class="pdf"
+          src="assets/Satish_Panda_CV.pdf#page=1&view=FitH"
+          title="Satish Panda — CV (PDF)">
+        </iframe>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Satish Panda · CV page. Last updated <span id="updated"></span>.
+    </footer>
+  </div>
+
+  <script>
+    // Link the left index to PDF pages
+    (function(){
+      const pdfUrl = "assets/Satish_Panda_CV.pdf";
+      const frame = document.getElementById('cvFrame');
+      const links = document.querySelectorAll('.link');
+
+      function setActive(el){
+        links.forEach(a => a.classList.remove('active'));
+        el.classList.add('active');
+      }
+
+      links.forEach(a => {
+        a.addEventListener('click', () => {
+          const p = a.getAttribute('data-page') || '1';
+          // Use FitH or FitV depending on preference; FitH is common
+          frame.src = `${pdfUrl}#page=${p}&view=FitH`;
+          setActive(a);
+        });
+      });
+    })();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+  </script>
+</body>
+</html>
